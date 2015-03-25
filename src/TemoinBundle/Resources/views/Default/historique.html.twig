@@ -1,0 +1,98 @@
+{% extends "HomeBundle::layout.html.twig" %}
+
+{% set activePage = 'Temoins' %}
+{% set activeMenu = 'CarteControle' %}
+
+
+
+
+
+{% block content %}
+	 
+
+
+<nav>
+  <div class="navbar">
+    <div class="container">
+
+      <div class="navigacija ">
+        <ul class="nav navbar-inverse navbar-nav navbar-center">
+        	
+	    	<li><a href="{{ path('temoin_encourspage') }}">En cours</a></li>
+	        <li><a href="#">Sortie pilulier</a></li>
+	        <li class="active"><a href="{{ path('temoin_cartepage') }}">Carte de contrôle</a></li>
+	        <li><a href="{{ path('temoin_gestionpage') }}">Administration des témoins</a></li>
+        </ul>
+      </div>      
+
+
+    </div>
+  </div>
+</nav>
+
+<div class="container navigacija ">
+
+	<h2> Catégorie de l'analyse </h1>
+
+	
+		<select id="carteSelect" class="input-lg">
+			<option value="default">Pas de filtre</option>
+			{% for analyse in analyses %}
+				<option>{{analyse.libelle}}</option>
+			{% endfor %}
+		</select>
+	<input id="CarteValider" type="button" value="Valider" class="btn btn-sm btn-primary" ></input>	
+
+
+	<div id="zoneBouton">
+	<input type="button"  id="CreerCarte" value ="Création carte de contrôle" class="btn btn-sm btn-primary" onclick="self.location.href='{{ path('temoin_creercartepage')}}'"></input></br>
+	<input type="button" value="Voir les cartes en cours" id="enCours" class="btn btn-sm btn-primary" onclick="self.location.href='{{ path('temoin_cartepage')}}'" ></input>
+</div>
+	<h2>Analyses cloturées</h1>
+</div>
+
+
+<div class="container theme-showcase" role="main">
+	<div class="jumbotron">
+		<div class="well">
+
+			<div id="menuVoir">
+			<table class="table table-bordered">
+				<tr>
+
+					<th>Témoin</th>
+					<th>Analyse</th>
+					<th>Consultation</th>
+				</tr>
+
+			</table>
+
+				</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript2 %}
+<script src="{{ asset('bundles/js/Carte.js') }}"></script>
+<script type="text/javascript">
+
+	function cartevalider(){
+		var analyse = $("#carteSelect").val();
+		var nom = "historique";
+		var request = $.ajax({
+	        type: 'POST',
+	        url: 'tableau',
+	        data: { filtre : analyse , nom : nom }
+		}); 
+		request.done(function( data) {
+	        $( "#menuVoir" ).html( data);
+	    });
+	}
+
+	setTimeout(function(){cartevalider()}, 0);
+	</script>
+
+{% endblock %}

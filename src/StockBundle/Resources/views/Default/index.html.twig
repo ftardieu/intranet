@@ -1,0 +1,17 @@
+{% extends "HomeBundle::layout.html.twig" %}
+
+{% set activePage = 'Stock' %}
+
+{% block content %}
+	<div class="containers"></div>
+		<div class="col-md-3">
+		    <ul class="nav nav-pills nav-stacked">
+		        <li><a href="{{ path('stock_sortiepage') }}">Sortie</a></li>
+		        <li><a href="{{ path('stock_evacuationpage') }}">Evacuation</a></li>
+		        <li><a href="{{ path('stock_ficheProduitpage') }}">Fiche produit</a></li>
+	        </ul>
+	    </div>
+	</div>
+
+   
+{% endblock %}

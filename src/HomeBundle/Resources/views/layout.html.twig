@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{% block header %}
+		<title>Intranet</title>
+
+		{% block stylesheet%}
+  <!-- Bootstrap core CSS -->
+  <link href="{{ asset('bundles/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Bootstrap theme -->
+  <link href="{{ asset('bundles/css/bootstrap.css') }}" rel="stylesheet">
+
+  <link href="{{ asset('bundles/css/normalize.css') }}" rel="stylesheet">
+  <link href="{{ asset('bundles/css/style.css') }}" rel="stylesheet">
+
+
+		{% endblock %}
+
+  {% block javascript %} 
+    <script type="text/javascript" src="{{ asset ('bundles/Jquery/jquery-1.11.2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('bundles/Jquery/index.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('bundles/Jquery/modernizr.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+  {% endblock %}
+  {% block javascript2 %}
+  {% endblock %}
+	{% endblock %}
+</head>
+<body>
+	 <!-- Fixed navbar -->
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+<nav>
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+      <div class="navigacija ">
+        <ul id="menu-header" class="nav navbar-nav navbar-left">
+          <a class="navbar-brand" href="{{ path('home_homepage') }}"><img class="logo" src="{{ asset ('bundles/img/logo.png') }}"></a>
+          <li class=""><a href="{{ path('home_homepage') }}">Home</a></li>
+          <li class=" dropdown {% if activePage is defined and activePage == 'Analyses' %}active{% endif %} "><a href="#" data-toggle="dropdown" class="dropdown-toggle">Analyses 
+            <span class="caret"></span></a>
+            <ul role="menu" class=" dropdown-menu">
+              <li class="{% if activeMenu is defined and activeMenu == 'AcidesGras' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Acides gras</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'Chlorures' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Chlorures</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'Sucres' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Sucres</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'AcidesAmines' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Acides aminés</a></li>
+            </ul>
+          </li>
+          <li class=" dropdown {% if activePage is defined and activePage == 'Divers' %}active{% endif %}"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Divers 
+            <span class="caret"></span></a>
+            <ul role="menu" class=" dropdown-menu">
+              <li class="{% if activeMenu is defined and activeMenu == 'Cibles' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Cibles</a></li>
+            </ul>
+          </li>
+          <li class=" dropdown {% if activePage is defined and activePage == 'Parc' %}active{% endif %}"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Parc 
+            <span class="caret"></span></a>
+            <ul role="menu" class=" dropdown-menu">
+              <li class="{% if activeMenu is defined and activeMenu == 'HPLC' %}active{% endif %}"><a href="{{ path('home_homepage') }}">HPLC</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'Informatique' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Informatique</a></li>
+            </ul>
+          </li>
+          <li class=" dropdown {% if activePage is defined and activePage == 'Qualité' %}active{% endif %}"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Qualité
+            <span class="caret"></span></a>
+            <ul role="menu" class=" dropdown-menu">
+              <li class="{% if activeMenu is defined and activeMenu == 'NoteService' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Notes de service</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'Point qualité' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Point qualité</a></li>
+            </ul>
+          </li>
+          <li class=" dropdown {% if activePage is defined and activePage == 'Robot' %}active{% endif %}"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Robot
+            <span class="caret"></span></a>
+            <ul role="menu" class=" dropdown-menu">
+              <li class="{% if activeMenu is defined and activeMenu == 'Pesees' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Pesées</a></li>
+            </ul>
+          </li>
+          <li class=" dropdown {% if activePage is defined and activePage == 'Stock' %}active{% endif %}"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Stock
+            <span class="caret"></span></a>
+            <ul role="menu" class=" dropdown-menu">
+              <li class="{% if activeMenu is defined and activeMenu == 'Sortie' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Sortie</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'Evacuation' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Evacuation</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'FicheProduit' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Fiche produit</a></li>
+            </ul>
+          </li>
+          <li class=" dropdown {% if activePage is defined and activePage == 'Temoins' %}active{% endif %}"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Témoins
+            <span class="caret"></span></a>
+            <ul role="menu" class=" dropdown-menu">
+              <li class="{% if activeMenu is defined and activeMenu == 'EnCours' %}active{% endif %}"><a href="{{ path('temoin_encourspage') }}">En cours</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'SortiePilulier' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Sortie pilulier</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'CarteControle' %}active{% endif %}"><a href="{{ path('temoin_cartepage') }}">Carte de contrôle</a></li>
+              <li class="{% if activeMenu is defined and activeMenu == 'administrationTemoin' %}active{% endif %}"><a href="{{ path('temoin_gestionpage') }}">Administration des témoins</a></li>
+            </ul>
+          </li>
+          <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+          {% if is_granted("ROLE_ADMIN") %} 
+                    <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                {% endif %} 
+        </ul>
+      </div>      
+
+
+    </div>
+  </div>
+</nav>
+{% else %}
+<nav>
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+
+      <div class="navigacija ">
+        <ul id="menu-header" class="nav navbar-nav navbar-left">
+          <a class="navbar-brand" href="{{ path('home_homepage') }}"><img class="logo" src="{{ asset ('bundles/img/logo.png') }}"></a>
+          <li class="{% if activePage is defined and activePage == 'Home' %}active{% endif %}"><a href="{{ path('home_homepage') }}">Home</a></li>
+          <li class="{% if activePage is defined and activePage == 'login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+        </ul>
+      </div>      
+
+
+    </div>
+  </div>
+</nav>
+{% endif %}
+ <div class="contents">
+        {% block content %}{% endblock %}
+</div>
+
+
+

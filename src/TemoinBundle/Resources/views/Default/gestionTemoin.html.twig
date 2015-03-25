@@ -1,0 +1,124 @@
+{% extends "HomeBundle::layout.html.twig" %}
+
+{% set activePage = 'Temoins' %}
+
+
+
+{% block content %}
+<script type="text/javascript" src="{{ asset ('bundles/js/Carte.js') }}"></script>
+
+<nav>
+  <div class="navbar">
+    <div class="container">
+
+      <div class="navigacija ">
+        <ul class="nav navbar-inverse navbar-nav navbar-center">
+
+	    	<li><a href="{{ path('temoin_encourspage') }}">En cours</a></li>
+	        <li><a href="#">Sortie pilulier</a></li>
+	        <li><a href="{{ path('temoin_cartepage') }}">Carte de contrôle</a></li>
+	        <li class="active"><a href="{{ path('temoin_gestionpage') }}">Administration des témoins</a></li>
+        </ul>
+      </div>      
+
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+      <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Création d'un témoin</h3>
+      </div>
+      <div class="panel-body">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        <div class="form-group">
+          {{ form_label(form.NomTemoin, "Nom du témoin ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.NomTemoin) }}
+
+          <div class="col-sm-4">
+          {# Génération de l'input. #}
+          {{ form_widget(form.NomTemoin, {'attr': {'class': 'form-control'}}) }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {{ form_label(form.Description, "Description ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.Description) }}
+
+          <div class="col-sm-4">
+          {# Génération de l'input. #}
+          {{ form_widget(form.Description, {'attr': {'class': 'form-control'}}) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form_label(form.Theorie, "Theorie du temoin ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.Theorie) }}
+
+          <div class="col-sm-4">
+          {# Génération de l'input. #}
+          {{ form_widget(form.Theorie, {'attr': {'class': 'form-control'}}) }}
+          </div>
+        </div>
+
+         <div class="form-group">
+          {{ form_label(form.numLot, "n° de lot  ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.numLot) }}
+
+          <div class="col-sm-4">
+          {# Génération de l'input. #}
+          {{ form_widget(form.numLot, {'attr': {'class': 'form-control'}}) }}
+          </div>
+        </div>
+         <div class="form-group">
+          {{ form_label(form.qteDepart, "Quantité de départ ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.qteDepart) }}
+
+          <div class="col-sm-4">
+          {# Génération de l'input. #}
+          {{ form_widget(form.qteDepart, {'attr': {'class': 'form-control'}}) }}
+          </div>
+        </div>
+         <div class="form-group">
+          {{ form_label(form.qteActuelle, "Quantité actuelle ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.qteActuelle) }}
+
+          <div class="col-sm-4">
+          {# Génération de l'input. #}
+          {{ form_widget(form.qteActuelle, {'attr': {'class': 'form-control'}}) }}
+          </div>
+        </div>
+         <div class="form-group">
+          {{ form_label(form.Dluo, "Dluo ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.Dluo) }}
+
+          <div class="col-sm-4">
+          {# Génération de l'input. #}
+          {{ form_widget(form.Dluo) }}
+          </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+          <div class="col-md-offset-3">
+            <input class="btn btn-sm btn-primary" type="submit" name="Envoie" value="Créer" />
+          </div>
+        </div>
+        {{ form_end(form) }}
+         
+      </div>
+</div>
+</div>
+
+{% endblock %}

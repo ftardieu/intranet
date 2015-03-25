@@ -1,0 +1,67 @@
+temoin_indexpage:
+    path:     /temoin/carte-de-controle/index
+    defaults: { _controller: TemoinBundle:Default:index }
+    options:
+        expose: true
+
+temoin_cartepage:
+    path:     /temoin/carte-de-controle
+    defaults: { _controller: TemoinBundle:Default:carte }
+    options:
+        expose: true
+
+
+temoin_gestionpage:
+    path:     /temoin/gestion-des-temoins
+    defaults: { _controller: TemoinBundle:Default:gestionTemoin }
+    options:
+        expose: true
+
+temoin_encourspage:
+    path:     /temoin/temoins-en-cours
+    defaults: { _controller: TemoinBundle:Default:temoinEnCours }
+    options:
+        expose: true
+
+temoin_creercartepage:
+    path:     /temoin/creation-carte
+    defaults: { _controller: TemoinBundle:Default:creerCarte }
+    options:
+        expose: true
+
+temoin_consultcartepage:
+    path:     /temoin/carte-de-controle/{id}
+    defaults: { _controller: TemoinBundle:Default:consultCarte }
+    options:
+        expose: true
+
+temoin_cartetableaupage:
+    path:     /temoin/tableau
+    defaults: { _controller: TemoinBundle:Default:carteTableau }
+    options:
+        expose: true
+
+
+temoin_graphepage:
+    path:     /temoin/graphe
+    defaults: { _controller: TemoinBundle:Default:graphe }
+    options:
+        expose: true
+
+temoin_voirCartepage:
+    path:     /temoin/voirCarte
+    defaults: { _controller: TemoinBundle:Default:voirCarte }
+    options:
+        expose: true
+
+temoin_historiquepage:
+    path:     /temoin/historique
+    defaults: { _controller: TemoinBundle:Default:historique }
+    options:
+        expose: true
+
+temoin_parametreCartepage:
+    path:     /temoin/parametreCarte
+    defaults: { _controller: TemoinBundle:Default:parametreCarte }
+    options:
+        expose: true

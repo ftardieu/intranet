@@ -1,0 +1,212 @@
+{% extends "HomeBundle::layout.html.twig" %}
+
+{% set activePage = 'Temoins' %}
+
+
+
+{% block content %}
+<nav>
+  <div class="navbar">
+    <div class="container">
+
+      <div class="navigacija ">
+        <ul class="nav navbar-inverse navbar-nav navbar-center">
+          
+        <li><a href="{{ path('temoin_encourspage') }}">En cours</a></li>
+          <li><a href="#">Sortie pilulier</a></li>
+          <li class="active"><a href="{{ path('temoin_cartepage') }}">Carte de contrôle</a></li>
+          <li><a href="{{ path('temoin_gestionpage') }}">Administration des témoins</a></li>
+        </ul>
+      </div>      
+
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="menuConsultation container"> 
+  <select id="nomCarte" class=" col-sm-2">
+    {% for nom in noms %}.
+      <option value="{{ nom.nom }}"> {{ nom.nom }}</option>
+    {% endfor %}
+  </select>
+
+  <input class="btn btn-sm btn-primary" type="button" value="Modifier" id="modifOnglet"></input>
+  <input  type="text" placeholder="nouveau nom" id="modifOngletTxt"></input>
+  <input class="btn btn-sm btn-primary" type="button" value="Valider" id="modifOngletBt"></input>
+
+  <input class="btn btn-sm btn-primary" type="button" value="Ajouter" id="ajoutOnglet"></input>
+  <input  type="text" placeholder="nouveau nom" id="ajoutOngletTxt"></input>
+  <input class="btn btn-sm btn-primary" type="button" value="Ajouter" id="ajoutOngletBt"></input>
+  <input class="btn btn-sm btn-primary" type="button" value="Supprimer" id="supprOnglet"></input>
+
+  <a href="#graphe">Voir le graphe</a>
+
+  {% if carte.cloturer == true %}
+    <h1 style="color:red">Carte clôturée</h1>
+  {% endif %}
+  </br>
+  <label >Nom du témoin  :   <label class="labe"> {{ carte.NomTemoin.nomTemoin }} </label> </label>
+  <label> Analyse :  <label class="labe"> {{ carte.NomAnalyse.libelle }} </label></label></br>
+
+  <label>Paramètres : </label>
+   <label>Theorie :  <label class="labe"> {{carte.NomTemoin.theorie}}  </label></label>
+
+
+
+
+  <div id="parametreCarte">
+    
+  </div>
+
+</div>
+
+
+
+
+
+
+      <div id="tb">
+        <div class="container theme-showcase" role="main">
+  <div class="well">
+
+
+      <table class="table table-bordered" id ="myTable">  
+        <tr class="tab1">
+          <td class="tab">Date</td>
+          <td class="tab1">N°</td>
+          <td class="tab">D1</td>
+          <td class="tab">D2</td>
+          <td class="tab">Moyenne</td>
+          <td class="tab1">CV</td>
+          <td class="tab1">Visa</td>
+          <td class="tab2">Commentaire</td>
+
+          <td class="tab1">Suppr.</td>
+        </tr>
+
+
+      </table>
+    </div>
+    </div>
+
+    </div>
+    
+
+<div id="graphe">
+  {{ include('TemoinBundle:Default:graphe.html.twig')}}
+</div>
+
+
+{% endblock %}
+
+{% block javascript2 %}
+    <script type="text/javascript" src="{{ asset ('bundles/Jquery/canvasjs.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('bundles/Js/Carte.js') }}"></script>
+   <script>
+  var carte_id ="{{ carte.id }}";
+  var ligne = $('#myTable tr').length;
+
+
+ function AjouterLigne()
+ {
+    var ligne = $('#myTable tr').length;
+    
+  $("#myTable").append([
+            '<tr class ="tab1">',  
+              '<td class="tab"><input type="text" id="DateValeur'+ligne+'" value=" {{ now.format("d-m-Y") }}" class="DateClass"></td>',
+              '<td class="tab1"><input type="text" id ="NumValeur'+ligne+'" value="'+ligne+'" disabled></td>',
+              '<td class="tab"><input type="text" id ="D1Valeur'+ligne+'"  value="" class="D1Class"></td>',
+              '<td class="tab"><input type="text" id ="D2Valeur'+ligne+'" value="" class="D2Class"></td>',
+              '<td class="tab"><input type="text" id ="MoyenneValeur'+ligne+'" value="0" disabled></td>',
+              '<td class="tab1"><input type="text" id ="CvValeur'+ligne+'" value="0" disabled></td>',
+              '<td class="tab1"><input type="text" id ="VisaValeur'+ligne+'" value="{{ user.getVisa() }}" class="VisaClass"></td>',
+              '<td class="tab2"><textarea class="CommClass" name="txt_test" id="txt_test'+ligne+'"></textarea></td>',
+              '<td class="tab1"><input type="checkbox" id="SupprValeur'+ligne+'"  class="SupprClass"></td>',
+              '<td class="tab1"><input type="button" id="CarteValeur'+ligne+'" value="Supprimer" onclick="SupprimerCarteValeur('+ligne+')"></td>',
+              
+            '</tr>'  
+        ].join('') //un seul append pour limiter les manipulations directes du DOM
+    );
+
+
+    ligne -=1 ;
+
+
+    
+    $("#CarteValeur"+ ligne).hide();
+     $("#CarteValeur"+ ligne).css("border-color","red");
+
+ }
+function cloturer(){
+  var btn = "cloturer";
+  var  nom = $("#nomCarte").val();
+      $.post(Routing.generate('temoin_consultcartepage',{id:carte_id}), {'btn':btn, 'nom' : nom , id:carte_id }, function(data, textStatus) {
+    }, "json");
+}
+
+
+ function SupprimerCarteValeur(id)
+ {
+  var D1Valeur= $("#D1Valeur"+id).val();
+  var D2Valeur= $("#D2Valeur"+id).val();
+  if( D1Valeur > 0 & D2Valeur > 0){
+    var btn ="CarteValeur";
+    var dateValeur= $("#DateValeur"+id).val();
+    var numValeur= $("#NumValeur"+id).val();
+    var  nom = $("#nomCarte").val();
+    $.post(Routing.generate('temoin_consultcartepage',{id:carte_id}), {'btn':btn, 'dateValeur': dateValeur,'numValeur': numValeur, 'nom' : nom , id:carte_id }, function(data, textStatus) {
+    }, "json");
+
+   
+  }
+   AfficheParNom();
+ }
+
+function AfficheParNom()
+{
+  var nom = $("#nomCarte").val();
+  
+
+  if(nom == null)
+    nom = "{{ carte.NomAnalyse.libelle  }}" ;
+  var tab="tableau"
+  var request = $.ajax({
+          type: 'POST',
+          url:  Routing.generate('temoin_voirCartepage') ,
+          data: { nom : nom , id : carte_id , tab:tab  }
+    }); 
+    request.done(function( data) {
+          $( "#tb" ).html( data);
+    });
+
+    
+}
+
+function parametreCarte()
+{
+  var nom = $("#nomCarte").val();
+  var tab = "parametreCarte";
+  var request = $.ajax({
+        type: 'POST',
+        url: Routing.generate('temoin_parametreCartepage') ,
+        data: { nom : nom , id : carte_id , tab:tab  }
+  }); 
+  request.done(function( data) {
+        $("#parametreCarte").html( data);
+  });
+
+
+}
+ 
+
+
+ setTimeout(function(){parametreCarte()},2000);
+ setTimeout(function(){AfficheParNom()},3000);
+
+
+
+
+</script>
+{% endblock %}

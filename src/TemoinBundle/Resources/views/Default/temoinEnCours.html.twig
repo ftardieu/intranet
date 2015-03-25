@@ -1,0 +1,61 @@
+{% extends "HomeBundle::layout.html.twig" %}
+
+{% set activePage = 'Temoins' %}
+
+
+
+{% block content %}
+<nav>
+  <div class="navbar">
+    <div class="container">
+
+      <div class="navigacija ">
+        <ul class="nav navbar-inverse navbar-nav navbar-center">
+        	
+	    	<li><a href="{{ path('temoin_encourspage') }}">En cours</a></li>
+	        <li><a href="#">Sortie pilulier</a></li>
+	        <li class="active"><a href="{{ path('temoin_cartepage') }}">Carte de contrôle</a></li>
+	        <li><a href="{{ path('temoin_gestionpage') }}">Administration des témoins</a></li>
+        </ul>
+      </div>      
+
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container theme-showcase" role="main">
+
+	<div class="jumbotron">
+		<h2>Temoins en cours</h2>
+		<div class="well">
+			<h1></h1>
+			<table class="table table-bordered">
+				<tr>
+					<th>Nom du témoin</th>
+					<th>Description</th>
+					<th>numLot</th>
+					<th>Quantité actuelle</th>
+					<th>Dluo</th>
+					<th>date de péremption</th>
+				</tr>
+				{% for temoin in temoins %}
+				<tr>
+				<td>{{ temoin.nomTemoin }}</td>
+				<td>{{ temoin.description }}</td>
+				<td>{{ temoin.numLot }}</td>
+				<td>{{ temoin.qteActuelle }}</td>
+				<td>{{ temoin.dluo.format('d-m-Y') }}</td>
+				<td>{{ temoin.datePeremption.format('d-m-Y')  }}</td>
+			</tr>
+		{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>	
+
+
+
+{% endblock %}

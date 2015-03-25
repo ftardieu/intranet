@@ -1,0 +1,42 @@
+
+<div class="container theme-showcase" role="main">
+  <div class="well">
+    <table class="table table-bordered" id ="myTable">  
+      <tr class="tab1">
+        <td class="tab">Date</td>
+        <td class="tab1">N°</td>
+        <td class="tab">D1</td>
+        <td class="tab">D2</td>
+        <td class="tab">Moyenne</td>
+        <td class="tab1">CV %</td>
+        <td class="tab1">Visa</td>
+        <td class="tab2">Commentaire</td>
+        <td class="tab1">Suppr. CC</td>
+      </tr>
+
+
+
+{% if cartesValeurs is defined %}
+{% for carte in cartesValeurs %}
+
+<tr class="tab1" >  
+  <td class="tab"><input type="text" id="DateValeur{{carte.getNum()}}" value="{{ carte.getDate().format('d-m-Y') }}" class="DateClass"></td>
+  <td class="tab1"><input type="text" id ="NumValeur{{carte.getNum()}}" value="{{carte.getNum()}}" disabled></td>
+  <td class="tab"><input type="text" id ="D1Valeur{{carte.getNum()}}"  value="{{carte.getD1()}}" class="D1Class"></td>
+  <td class="tab"><input type="text" id ="D2Valeur{{carte.getNum()}}" value="{{carte.getD2()}}" class="D2Class"></td> 
+  <td class="tab"><input type="text" id ="MoyenneValeur{{carte.getNum()}}" value="{{carte.getMoyenne()}}" disabled></td>
+  <td class="tab1"><input type="text" id ="CvValeur{{carte.getNum()}}" value="{{carte.getCv()}}" disabled></td>
+  <td class="tab1"><input type="text" id ="VisaValeur{{carte.getNum()}}" value="{{ carte.getVisa() }}"class="VisaClass"></td>
+
+  <td class="tab2"><textarea class="CommClass" name="txt_test" id="txt_test{{carte.getNum()}}" >{{carte.getCommentaire()}}</textarea></td>
+  <td class="tab1"><input type="checkbox" id="SupprValeur{{carte.getNum()}}" value="{{ carte.getSuppression() }}" class="SupprClass" {% if carte.getSuppression() %} checked="checked" {% endif %}></td>
+</tr>
+
+
+{% endfor %}
+</table>
+<input type="button" id="NouvelleLigne" value="Ajouter une ligne" onclick = "AjouterLigne()"></input>
+<input type="button" value ="Clôturer la carte" id="cloturerCC" class="btn" onclick = "cloturer()"></input>
+  </div>
+</div>
+{% endif %}

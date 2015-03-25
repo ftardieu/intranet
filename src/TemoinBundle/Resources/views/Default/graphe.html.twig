@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+
+{% block javascript2%}  
+  <script type="text/javascript">
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      theme: "theme1",
+      title:{
+        text: " "
+      },
+      animationEnabled: true,
+      axisX: {
+      includeZero: true,   
+        
+        interval:1,
+        intervalType: "moy"
+        
+      },
+      axisY:{
+        includeZero: true,
+        stripLines:[
+            {
+                startValue:200,
+                endValue:200,
+                 thickness:5,           
+                color:"#2555",
+                
+                labelFontColor: "#a8a8a8"
+            }
+            ],
+
+
+
+
+        
+      },
+      data: [
+      {        
+        type: "line",
+               
+        dataPoints: [
+         { x: 10, y: 200 },
+         { x: 10, y: 250 },
+        { x: 70, y: 200 },
+
+        
+        ]
+      }, {        
+        type: "line",
+        dataPoints: [
+        { x: 0, y: 310 },
+        { x: 2, y: 310},
+        { x: 3, y: 310 },
+        { x: 4, y: 310 },
+        { x: 5, y: 310 },
+        { x: 6, y: 310 },
+        { x: 7, y: 310 },
+        { x: 8, y: 310 },
+        { x: 9, y: 310}
+      
+        ]
+      },
+        {        
+        type: "line",
+        dataPoints: [
+        { x: 1, y: 45 },
+        { x: 2, y: 50},
+        { x: 3, y: 40 },
+        { x: 4, y: 45 },
+        { x: 5, y: 45 },
+        { x: 6, y: 48 },
+        { x: 7, y: 43 },
+        { x: 8, y: 41 },
+        { x: 9, y: 28}
+      
+        ]
+      },
+        {        
+        type: "line",
+        dataPoints: [
+        { x: 1, y: 71 },
+        { x: 2, y: 55},
+        { x: 3, y: 50 },
+        { x: 4, y: 65 },
+        { x: 5, y: 95 },
+        { x: 6, y: 68 },
+        { x: 7, y: 28 },
+        { x: 8, y: 34 },
+        { x: 9, y: 14}
+      
+        ]
+      }
+      ]
+    });
+
+chart.render();
+}
+</script>
+{% endblock %}
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+</body>
+
+</html>

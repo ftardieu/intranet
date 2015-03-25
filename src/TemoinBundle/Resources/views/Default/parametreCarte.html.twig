@@ -1,0 +1,11 @@
+<div class="container ">
+{% if carte is defined %}
+  {% if cible is defined %}
+    <label>Cible :  <label class="labe"> {{ cible }}  </label></label>
+  {% else %}
+   <label>Cible :  <label class="labe"> {{carte.NomTemoin.theorie}}  </label></label>
+  {% endif %}  
+    <label>Ecart % :  <label class="labe"><input type="text" id="ecart" value="{{ carte.Ecart }}"></input></label></label>
+  <label>Nombre de valeur (cible) :  <label class="labe"><input type="text" id="nombreCible" value="{{ nb }}"></input></label></label>
+{% endif %}
+</div>

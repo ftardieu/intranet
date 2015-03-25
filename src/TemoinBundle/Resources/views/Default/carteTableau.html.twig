@@ -1,0 +1,21 @@
+
+<table class="table table-bordered">
+	<tr>
+		<th>Témoin</th>
+		<th>Analyse</th>
+		<th>Consultation</th>
+	</tr>
+		{% if carte is defined %}	
+
+
+			{% for cart in carte %}
+						<tr>
+							<td>{{  cart.NomTemoin.nomTemoin }}</td>
+							<td>{{ cart.NomAnalyse.libelle }}</td>
+							<td><a href="{{ path('temoin_consultcartepage', {id: cart.id}) }}"><input class="btn btn-lg" type="button" value="Consultation"/></a></td>
+							
+						</tr>
+
+			{% endfor %}
+	{% endif %}
+</table>

@@ -1,0 +1,19 @@
+{% extends "HomeBundle::layout.html.twig" %}
+
+
+{% set activePage = 'Stock' %}
+
+{% set activeMenu = 'Sortie' %}
+
+{% block content %}
+	<div class="containers"></div>
+		<div class="col-md-3">
+		    <ul class="nav nav-pills nav-stacked">
+		        <li class="{% if activeMenu is defined and activeMenu == 'Sortie' %}active{% endif %}"><a href="{{ path('stock_sortiepage') }}">Sortie</a></li>
+		        <li class="{% if activeMenu is defined and activeMenu == 'Evacuation' %}active{% endif %}"><a href="{{ path('stock_evacuationpage') }}">Evacuation</a></li>
+		        <li class="{% if activeMenu is defined and activeMenu == 'FicheProduit' %}active{% endif %}"><a href="{{ path('stock_ficheProduitpage') }}">Fiche produit</a></li>
+	        </ul>
+	    </div>
+	</div>
+    
+{% endblock %}

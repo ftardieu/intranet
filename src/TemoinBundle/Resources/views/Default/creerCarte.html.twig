@@ -1,0 +1,64 @@
+{% extends "HomeBundle::layout.html.twig" %}
+
+{% set activePage = 'Temoins' %}
+
+
+
+{% block content %}
+<script type="text/javascript" src="{{ asset ('bundles/js/Carte.js') }}"></script>
+
+<div class="container">
+    <div class="panel panel-default">
+    	<div class="panel-heading">
+       		<h3 class="panel-title">Création d'un témoin</h3>
+     	</div>
+        <div class="panel-body">
+        	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        	<div class="form-group">
+          		{{ form_label(form.NomTemoin, "Nom du témoin ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          		{# Affichage des erreurs pour ce champ précis. #}
+         		{{ form_errors(form.NomTemoin) }}
+
+		          <div class="col-sm-4">
+		          {# Génération de l'input. #}
+		          {{ form_widget(form.NomTemoin, {'attr': {'class': 'form-control'}}) }}
+		          </div>
+
+        	</div>
+			<div class="form-group">
+          		{{ form_label(form.NomAnalyse, "Analyse ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          		{# Affichage des erreurs pour ce champ précis. #}
+         		{{ form_errors(form.NomAnalyse) }}
+
+	            <div class="col-sm-4">
+	            {# Génération de l'input. #}
+	            {{ form_widget(form.NomAnalyse, {'attr': {'class': 'form-control'}}) }}
+	            </div>
+            <input type="button" value="Autre analyse" id="autre" class="btn btn-sm btn-primary"></input>
+          <input type="text" placeholder="Créer votre analyse" id="NomCategorie" class="input"></input>
+          <input type="button" value="Créer" id="CreerCategorie" class="btn btn-sm btn-primary" onclick="self.location.href='{{ path('temoin_creercartepage')}}'"  ></input>
+      </div>
+          <div class="form-group">
+          {{ form_label(form.Ecart, "Ecart en % ", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+          {# Affichage des erreurs pour ce champ précis. #}
+          {{ form_errors(form.Ecart) }}
+
+          <div class="col-sm-4">
+          {# Génération de l'input. #}
+          {{ form_widget(form.Ecart, {'attr': {'class': 'form-control'}}) }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-offset-3">
+            <input class="btn btn-sm btn-primary" type="submit" name="Envoie" value="Créer" id="CreerCarte" />
+          </div>
+        </div>
+       	 {{ form_end(form) }}
+
+        	
+        </div>
+    </div>
+</div>
+
+{% endblock %}

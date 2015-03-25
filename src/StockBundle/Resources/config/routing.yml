@@ -1,0 +1,16 @@
+stock_indexpage:
+    path:     /stock
+    defaults: { _controller: StockBundle:Default:index }
+
+stock_sortiepage:
+    path: /stock/sortie
+    defaults: { _controller: StockBundle:Default:sortie }
+
+stock_evacuationpage:
+    path: /stock/evacuation
+    defaults: { _controller: StockBundle:Default:evacuation }
+
+
+stock_ficheProduitpage:
+    path: /stock/ficheProduit
+    defaults: { _controller: StockBundle:Default:ficheProduit }
