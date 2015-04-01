@@ -37,3 +37,5 @@ Créer un utilisateur :
 Placer le projet dans wamp ou easyphp ( dossier www).
 
 Pour afficher la page d'accueil : localhost/web/app_dev.php/ (mettre le port s'il y en a un après localhost)
+
+Une fois le projet installé il suffit de faire dans git bash  : git pull (en étant bien à la racine du projet) git pull qui mettra a jour le projet.
