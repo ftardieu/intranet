@@ -1,7 +1,7 @@
 # intranet
-L’installation ——————————————
+Lâ€™installation â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
 
-L’installation est des plus basiques, il suffit de cloner le dépôt Github en local.
+Lâ€™installation est des plus basiques, il suffit de cloner le dÃ©pÃ´t Github en local.
 
 	Telecharger et installer git .
 	Lancer git bash dans un dossier vide
@@ -11,24 +11,31 @@ Installer php :
 	-Telecharger et installer php.
 	-L'ajouter dans les variables d'environnements.
 
-Installer composer car le projet est réalisé sous Symfony :
+Installer composer car le projet est rÃ©alisÃ© sous Symfony :
 
 	-Telecharger et installer composer.
 		
-	-Se mettre à la racine du projet avec un invité de commande et taper composer install .
+	-Se mettre Ã  la racine du projet avec un invitÃ© de commande et taper composer install .
 	
-	-Il se peut qu'il y ai une érreur SSL , pour cela il faut se reférer aux docs sur internet de wamp ou easyphp ( une extension a activer)
+	-Il se peut qu'il y ai une Ã©rreur SSL , pour cela il faut se refÃ©rer aux docs sur internet de wamp ou easyphp ( une extension a activer)
 	
-	-Il peut aussi y avoir des problèmes de caches : pour celà taper app/console cache:clear --no-warmup
+	-Il peut aussi y avoir des problÃ¨mes de caches : pour celÃ  taper app/console cache:clear --no-warmup
 
 
-Installer la base de données : 
+Installer la base de donnÃ©es : 
 
-	- Paramétrer le fichier parameters.yml dans app/config
-	- Créer une base de données nommé intranet.
-	- toujours à la racine du projet , taper la commande : php app/console doctrine:schema:update --force 
-	-la base de données est maintenant opérationnel.
+	- ParamÃ©trer le fichier parameters.yml dans app/config
+	- CrÃ©er une base de donnÃ©es nommÃ© intranet.
+	- toujours Ã  la racine du projet , taper la commande : php app/console doctrine:schema:update --force 
+	-la base de donnÃ©es est maintenant opÃ©rationnel.
 
-Créer un utilisateur :
+CrÃ©er un utilisateur :
 
 	-php app/console fos:user:create admin --super-admin
+	
+	
+Placer le projet dans wamp ou easyphp ( dossier www).
+
+Pour afficher la page d'accueil : localhost/web/app_dev.php/ (mettre le port s'il y en a un aprÃ¨s localhost)
+
+Une fois le projet installÃ© il suffit de faire dans git bash  : git pull (en Ã©tant bien Ã  la racine du projet) git pull qui mettra a jour le projet.
